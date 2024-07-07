@@ -16,4 +16,9 @@ export SDL_BLITTER_DISABLED="$DC_SDL_BLITTER_DISABLED"
 
 echo "ffplay" >/tmp/fg_proc
 
+NO_SLEEP_SHUTDOWN=/tmp/sleep_shutdown_disabled
+touch "$NO_SLEEP_SHUTDOWN"
+
 /usr/bin/ffplay "$ROM"
+
+rm "$NO_SLEEP_SHUTDOWN"

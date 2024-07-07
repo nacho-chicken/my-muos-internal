@@ -26,7 +26,12 @@ else
 	fbset -fb /dev/fb0 -g 960 720 960 1440 32
 fi
 
+NO_SLEEP_SHUTDOWN=/tmp/sleep_shutdown_disabled
+touch "$NO_SLEEP_SHUTDOWN"
+
 HOME="$EMUDIR" SDL_ASSERT=always_ignore SDL_GAMECONTROLLERCONFIG=$(grep "Deeplay" "/usr/lib/gamecontrollerdb.txt") ./PPSSPP "$ROM"
+
+rm "$NO_SLEEP_SHUTDOWN"
 
 if [ "$DEVICE_TYPE" = "rg28xx" ]; then
 	fbset -fb /dev/fb0 -g 480 640 480 1280 32

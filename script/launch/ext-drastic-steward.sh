@@ -22,4 +22,9 @@ EMUDIR="$DC_STO_ROM_MOUNT/MUOS/emulator/drastic-steward"
 chmod +x "$EMUDIR"/launch.sh
 cd "$EMUDIR" || exit
 
+NO_SLEEP_SHUTDOWN=/tmp/sleep_shutdown_disabled
+touch "$NO_SLEEP_SHUTDOWN"
+
 HOME="$EMUDIR" SDL_ASSERT=always_ignore "$EMUDIR"/launch.sh "$ROM"
+
+rm "$NO_SLEEP_SHUTDOWN"

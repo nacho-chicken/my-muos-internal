@@ -36,6 +36,9 @@ chmod +x "$EMUDIR"/scummvm
 
 cd "$EMUDIR" || exit
 
+NO_SLEEP_SHUTDOWN=/tmp/sleep_shutdown_disabled
+touch "$NO_SLEEP_SHUTDOWN"
+
 if [ "$SCVM" = "grim:grim" ]; then
 	GRIMINI="$EMUDIR"/.config/scummvm/grimm.ini
 	sed -i "s|^path=.*$|path=$ROMPATH/$SUBFOLDER|" "$GRIMINI"
@@ -46,3 +49,5 @@ if [ "$SCVM" = "grim:grim" ]; then
 else
 	HOME="$EMUDIR" SDL_ASSERT=always_ignore nice --20 ./scummvm --aspect-ratio -f --extrapath="$EXTRA" --themepath="$THEME" --savepath="$SAVE" -p "$ROMPATH/$SUBFOLDER" "$SCVM"
 fi
+
+rm "$NO_SLEEP_SHUTDOWN"

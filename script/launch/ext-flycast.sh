@@ -22,4 +22,9 @@ EMUDIR="$DC_STO_ROM_MOUNT/MUOS/emulator/flycast"
 chmod +x "$EMUDIR"/flycast
 cd "$EMUDIR" || exit
 
+NO_SLEEP_SHUTDOWN=/tmp/sleep_shutdown_disabled
+touch "$NO_SLEEP_SHUTDOWN"
+
 HOME="$EMUDIR" SDL_ASSERT=always_ignore ./flycast "$ROM"
+
+rm "$NO_SLEEP_SHUTDOWN"

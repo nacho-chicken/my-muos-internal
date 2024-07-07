@@ -39,4 +39,9 @@ fi
 chmod +x "$EMUDIR"/mupen64plus
 cd "$EMUDIR" || exit
 
+NO_SLEEP_SHUTDOWN=/tmp/sleep_shutdown_disabled
+touch "$NO_SLEEP_SHUTDOWN"
+
 HOME="$EMUDIR" SDL_ASSERT=always_ignore ./mupen64plus --corelib ./libmupen64plus.so.2.0.0 --configdir . "$ROM"
+
+rm "$NO_SLEEP_SHUTDOWN"

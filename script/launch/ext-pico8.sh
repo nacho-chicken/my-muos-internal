@@ -45,6 +45,9 @@ chmod +x "$EMUDIR"/pico8_64
 
 cd "$EMUDIR" || exit
 
+NO_SLEEP_SHUTDOWN=/tmp/sleep_shutdown_disabled
+touch "$NO_SLEEP_SHUTDOWN"
+
 if [ "$NAME" = "Splore" ]; then
 	PATH="$EMUDIR:$PATH" HOME="$EMUDIR" SDL_ASSERT=always_ignore ./pico8_64 -windowed 0 -splore
 elif [ "$NAME" = "Backup Favourites" ]; then
@@ -52,3 +55,5 @@ elif [ "$NAME" = "Backup Favourites" ]; then
 else
 	PATH="$EMUDIR:$PATH" HOME="$EMUDIR" SDL_ASSERT=always_ignore ./pico8_64 -windowed 0 -run "$ROM"
 fi
+
+rm "$NO_SLEEP_SHUTDOWN"
